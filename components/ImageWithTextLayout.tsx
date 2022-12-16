@@ -28,7 +28,7 @@ const ImageWithTextLayout: React.FC<ImageWithTextLayoutProps> = (props) => {
             <div className="w-1/2 mt-20 items-center justify-center">
                 <h1 className="text-4xl font-bold mb-10">Creator:
                     {' '}
-                    <span className="text-red-600">{creator}</span>
+                    <span className="text-red-600">{assetQuery.data.creator}</span>
                 </h1>
                 <p>{assetQuery.data.description}</p>
             </div>
