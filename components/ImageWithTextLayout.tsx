@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import immutableXService from "../service/ImmutableXService";
 
 const ImageWithTextLayout = ({nft_id}) => {
 
@@ -13,11 +14,20 @@ const ImageWithTextLayout = ({nft_id}) => {
         "                    sit laboris exercitation.");
     const [image_url, setImageUrl]= useState("/messiCopa.jpg");
 
-    useEffect(()=>{
-        //fetch Immutable X
+    useEffect(() => {
+            async function fetchImmutableX() {
 
+                let asset = await immutableXService.getAsset("", nft_id);
+                if (!asset)
+                    return;
+                setTitle(asset.name);
+                setDesc(asset.description);
+                setImageUrl(asset.image_url);
+            }
 
-    })
+             fetchImmutableX();
+        }, [nft_id]);
+
     return (
         <div className="flex flex-wrap px-20">
             <div className="w-1/2">
@@ -30,7 +40,6 @@ const ImageWithTextLayout = ({nft_id}) => {
             </div>
         </div>
     );
-
 };
 
 export default ImageWithTextLayout;
