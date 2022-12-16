@@ -18,14 +18,14 @@ const Claim: NextPage = () => {
     const router = useRouter();
 
     return (
-        <div className="flex min-h-screen container flex-col items-center justify-center py-2">
+        <div className="flex min-h-screen flex-col items-center justify-center py-2">
 
             <Navbar/>
 
             <ImageWithTextLayout nft_id={router.query.nftId}/>
 
             <div className="flex flex-row my-4">
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form className="space-x-4" onSubmit={handleSubmit(onSubmit)}>
                     <input className="form"
                            type="text"
                            placeholder="Insert wallet"

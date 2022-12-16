@@ -22,7 +22,7 @@ const Create: NextPage = () => {
         <>
             <Navbar/>
 
-            <main className="px-20 min-h-screen w-fit mx-auto items-center justify-center py-20">
+            <main className="min-h-screen w-fit mx-auto flex flex-col">
                 <h1 className="text-3xl font-bold my-4">Create your reward 🎁</h1>
                 <form className="p-6 card-bg rounded-2xl shadow-lg flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
                     <label htmlFor="creator" className="flex-col flex">
