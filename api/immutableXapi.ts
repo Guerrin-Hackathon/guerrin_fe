@@ -13,32 +13,38 @@ const immutableXapi = (()=>{
         }
     })
 
-    const batchTransfer = ( async (toAddress, tokenId, tokenAddress) => {
-        try {
-            return await link.batchNftTransfer([
-                {
-                    "type": "ERC721TokenType",
-                    "toAddress": `${toAddress}`,
-                    "tokenId": `${tokenId}`,
-                    "tokenAddress": `${tokenAddress}`
-                }
-            ])
-        } catch (error) {
-            console.error(error)
-        }
-    })
+    // const batchTransfer = ( async (toAddress, tokenId, tokenAddress) => {
+    //     try {
+    //         return await link.batchNftTransfer([
+    //             {
+    //                 "type": "ERC721TokenType",
+    //                 "toAddress": `${toAddress}`,
+    //                 "tokenId": `${tokenId}`,
+    //                 "tokenAddress": `${tokenAddress}`
+    //             }
+    //         ])
+    //     } catch (error) {
+    //         console.error(error)
+    //     }
+    // })
 
     const getAsset =  ( async (address:string, nft_id:string) => {
         try {
             const client = await ImmutableXClient.build({
-                publicApiUrl: 'https://api.sandbox.x.immutable.com/v1',
+                publicApiUrl: `${process.env.IMMUTABLEX_API}`,
             })
 
             let assets =  await client.getAssets({
-                user: "0x73D873D25BBE8BaFA27dD20c95A71AF125820a7C",
+                user: address,
             });
-            console.log(assets.result[parseInt(nft_id)].metadata)
-            return assets.result[parseInt(nft_id)].metadata;
+            if( assets.result){
+                for(const asset of assets.result){
+                    if(asset.token_id == nft_id){
+                        return asset.metadata;
+                    }
+                }
+            }
+
         } catch (error) {
             console.error(error)
         }
@@ -46,7 +52,7 @@ const immutableXapi = (()=>{
 
     return {
         login,
-        batchTransfer,
+        //batchTransfer,
         getAsset
     }
 })();

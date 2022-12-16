@@ -17,7 +17,7 @@ const ImageWithTextLayout = ({nft_id}) => {
 
     useEffect(() => {
             async function fetchImmutableX() {
-                let asset = await immutableXService.getAsset("0x9C57b04DEA2636901883b0fAD41811B9C6ccb4BF", "1");
+                let asset = await immutableXService.getAsset(nft_id);
                 if (!asset)
                     return;
                 setTitle(asset.title);

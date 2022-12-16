@@ -27,7 +27,7 @@ const Claim:NextPage = () =>{
                 </svg>
                 <span className="ml-3">Go to home</span>
             </button>
-            <ImageWithTextLayout nft_id={router.query.nft_id}/>
+            <ImageWithTextLayout nft_id={router.query.nftId}/>
             <div className="flex flex-row my-4">
                 <form>
                     <input className="rounded-lg mt-10 p-2 mr-4" placeholder="Insert wallet"
