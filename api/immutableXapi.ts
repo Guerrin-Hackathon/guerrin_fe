@@ -28,6 +28,31 @@ const immutableXapi = (() => {
     //     }
     // })
 
+    const getTokenIdsByCollectionId = (async (address: string, collection_id: string) => {
+        try {
+            const client = await ImmutableXClient.build({
+                publicApiUrl: `${process.env.IMMUTABLEX_API}`,
+            })
+
+            const assets = await client.getAssets({
+                user: address,
+            })
+
+            if (assets.result) {
+                const tokenIds = [];
+                for (const asset of assets.result) {
+                    // @ts-ignore
+                    if (asset.metadata.reward == collection_id) {
+                        tokenIds.push(asset.token_id);
+                    }
+                }
+                return tokenIds;
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    })
+
     const getAsset = (async (address: string, nft_id: string) => {
         try {
             const client = await ImmutableXClient.build({
@@ -54,7 +79,8 @@ const immutableXapi = (() => {
     return {
         login,
         //batchTransfer,
-        getAsset
+        getAsset,
+        getTokenIdsByCollectionId,
     }
 })();
 
