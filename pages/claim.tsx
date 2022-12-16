@@ -1,13 +1,21 @@
 import {NextPage} from "next";
 import {useTheme} from "next-themes";
-import Navbar from "../components/Navbar";
-import SideBar from "../components/SideBar";
 import ImageWithTextLayout from "../components/ImageWithTextLayout";
 import React, {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 
 const Claim:NextPage = () =>{
 
+    const router = useRouter();
+
+    const [token, setToken] = useState(undefined);
+
     const {theme, setTheme} = useTheme();
+
+    useEffect(()=>{
+        let nftId = router.query.nft_id;
+    })
+
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -19,7 +27,7 @@ const Claim:NextPage = () =>{
                 </svg>
                 <span className="ml-3">Go to home</span>
             </button>
-            <ImageWithTextLayout/>
+            <ImageWithTextLayout nft_id={router.query.nft_id}/>
             <div className="flex flex-row my-4">
                 <form>
                     <input className="rounded-lg mt-10 p-2 mr-4" placeholder="Insert wallet"
@@ -33,6 +41,7 @@ const Claim:NextPage = () =>{
 
     );
     async function claim(){
+        //send token provided by back, nft_id and wallet info
         console.log("claimed")
     }
 
