@@ -22,10 +22,15 @@ const immutableXService = (() => {
         return immutableXapi.getAsset(`${process.env.ADDRESS}`, token_id);
     }
 
+    const getTokenIdsByCollectionId = async (collection_id: string) => {
+        return immutableXapi.getTokenIdsByCollectionId(`${process.env.ADDRESS}`, collection_id);
+    }
+
     return {
         login,
         batchTransfer,
-        getAsset
+        getAsset,
+        getTokenIdsByCollectionId,
     }
 })();
 export default immutableXService;
