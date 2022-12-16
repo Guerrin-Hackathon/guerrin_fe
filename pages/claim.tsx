@@ -4,23 +4,14 @@ import ImageWithTextLayout from "../components/ImageWithTextLayout";
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import { useForm } from 'react-hook-form';
+import apiService from "../service/apiService";
 
 const Claim:NextPage = () =>{
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const router = useRouter();
-<<<<<<< Updated upstream
-
     const [token, setToken] = useState<string | undefined>(undefined);
-=======
-    const [token, setToken] = useState(undefined);
-    const {theme, setTheme} = useTheme();
 
-    useEffect(() => {
-        let nftId = router.query.nft_id;
-    })
-
->>>>>>> Stashed changes
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -33,9 +24,13 @@ const Claim:NextPage = () =>{
                 <span className="ml-3">Go to home</span>
             </button>
             <ImageWithTextLayout nft_id={router.query.nftId}/>
+
             <div className="flex flex-row my-4">
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <input className="rounded-lg mt-10 p-2 mr-4" type="text" placeholder="Insert wallet" {...register("Wallet", {required: true, pattern: /^0x[a-fA-F0-9]{40}$/i})}
+                    <input className="rounded-lg mt-10 p-2 mr-4"
+                           type="text"
+                           placeholder="Insert wallet"
+                           {...register("wallet" )}
                     />
                     <button type="submit" className="bg-red-500 hover:bg-red-600  font-bold py-2 px-4 rounded inline-flex items-center mt-10">
                         <span>Claim</span>
@@ -46,10 +41,9 @@ const Claim:NextPage = () =>{
 
     );
 
-    async function onSubmit(){
-        console.log("messi")
+    async function onSubmit(data){
+       let result = await apiService.claimReward(router.query.nftId, router.query.token, data.wallet );
+
     }
-
-
 }
 export default Claim

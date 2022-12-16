@@ -21,10 +21,18 @@ const api = (()=>{
             console.error(error)
         }
     })
+    const claimReward = ( async (nft_id, token_id, wallet) => {
+        try {
+
+        } catch (error) {
+            console.error(error)
+        }
+    })
 
     return {
         createRewards,
-        distributeRewards
+        distributeRewards,
+        claimReward
     }
 })();
 
