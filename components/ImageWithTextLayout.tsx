@@ -4,35 +4,40 @@ import {useQuery} from "@tanstack/react-query";
 import {Spinner} from "./shared/Spinner";
 
 interface ImageWithTextLayoutProps {
-    nft_id: string;
+    nft_id: string | undefined;
 }
 
 const ImageWithTextLayout: React.FC<ImageWithTextLayoutProps> = (props) => {
     const assetQuery = useQuery(['asset'], async () => {
+        if (!props.nft_id) {
+            return;
+        }
         return await immutableXService.getAsset(props.nft_id);
     }, {
         enabled: !!props.nft_id,
     });
 
-    if (assetQuery.isLoading) {
-        return <Spinner/>;
-    }
-
     return (
-        <div className="flex flex-wrap px-20 w-full">
-            <div className="w-1/2">
-                <h1 className="text-5xl font-bold mb-10">{assetQuery.data.title}</h1>
-                {/*// <!--En caso de conflicto comunicarse con rober-->*/}
-                <img src={assetQuery.data.image_url} alt="reward" className="h-[500px]"/>
-            </div>
-            <div className="w-1/2 mt-20 items-center justify-center">
-                <h1 className="text-4xl font-bold mb-10">Creator:
-                    {' '}
-                    <span className="text-red-600">{creator}</span>
-                </h1>
-                <p>{assetQuery.data.description}</p>
-            </div>
-        </div>
+        <main className="w-fit flex flex-wrap justify-center items-center sm:space-x-4">
+            {
+                assetQuery.isLoading ? <Spinner/> :
+                    <>
+                        <div className="flex flex-col">
+                            <h1 className="text-2xl font-bold font-mono leading-6 py-4">{assetQuery.data.title}</h1>
+                            {/*// <!--En caso de conflicto comunicarse con rober-->*/}
+                            <img src={assetQuery.data.image_url} alt="reward"
+                                 className="w-60 rounded-3xl shadow-lg shadow-red-600/40 dark:shadow-red-400/30"/>
+                        </div>
+                        <div className="flex flex-col items-start mt-8 sm:mt-0 space-y-4">
+                            <h2 className="text-xl font-medium leading-4">Created by:
+                                {' '}
+                                <span className="text-red-600 dark:text-red-400">{assetQuery.data.creator}</span>
+                            </h2>
+                            <p className="text-left">{assetQuery.data.description}</p>
+                        </div>
+                    </>
+            }
+        </main>
     );
 };
 
