@@ -24,8 +24,8 @@ const Navbar = () => {
 
     return (
         <nav
-            className="fixed justify-between py-4 px-6 z-10 bottom-0 w-full h-[6rem] md:w-[7.15rem] md:top-0 md:left-0 flex md:flex-col md:h-full card-bg bg-opacity-50 backdrop-blur">
-            <NavbarIcon icon={<button className="icon border-0 p-0 m-0 text-4xl" onClick={() => router.push('/')}>🍕</button>}/>
+            className="fixed justify-between py-4 px-6 z-10 bottom-0 w-full md:w-[6rem] h-[6rem] md:top-0 md:left-0 flex md:flex-col md:h-full card-bg bg-opacity-50 backdrop-blur">
+            <NavbarIcon icon={<button className="icon border-0 p-0 m-0 text-4xl text-center" onClick={() => router.push('/')}>🍕</button>}/>
 
             <div className="flex md:flex-col items-center justify-center space-x-8 md:space-x-0 md:space-y-8">
                 <NavbarIcon icon={<ToggleTheme/>} text="Change Theme"/>
