@@ -1,9 +1,9 @@
 import React from 'react';
 
-const LayoutDashboard = ({title, rewards}) => {
+const LayoutDashboard = () => {
     return (
         <div>
-
+            {/*TODO LAYOUT VISUALIZING COLLECTIONS*/}
         </div>
     );
 };

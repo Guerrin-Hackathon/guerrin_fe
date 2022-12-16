@@ -2,9 +2,10 @@ import React from 'react';
 import immutableXService, {asset} from "../service/ImmutableXService";
 import {useQuery} from "@tanstack/react-query";
 import {Spinner} from "./shared/Spinner";
+import Image from "next/image";
 
 interface ImageWithTextLayoutProps {
-    nft_id: string | undefined;
+    nft_id: string | string[] | undefined;
 }
 
 const ImageWithTextLayout: React.FC<ImageWithTextLayoutProps> = (props) => {

@@ -18,7 +18,6 @@ export default function CreationId() {
 
   const {register, handleSubmit, reset, getValues, formState: {errors}} = useForm<FormValues>();
 
-  // TODO: display tokenIds and allow them to be asigned to user emails
   const { data: tokenIds, isLoading, isError } = useQuery(['collection'], async () => {
       return await immutableXService.getTokenIdsByCollectionId(collection_id);
   }, {
@@ -50,8 +49,6 @@ export default function CreationId() {
     setEmails(p => [...p, email])
     reset()
   }
-
-  // TODO: dar tokenIds e emails como arrays a partir del form
 
   return (
     <div>
