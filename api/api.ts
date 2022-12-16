@@ -24,7 +24,6 @@ const api = (()=>{
     const claimReward = ( async (nft_id:string | string[] | undefined, token:string, wallet:string) => {
         try {
          //fetch to our api, indicating which nft to send to who, with it's auth token
-            console.log("success")
         } catch (error) {
             console.error(error)
         }
