@@ -1,7 +1,5 @@
 import {Link} from "@imtbl/imx-sdk";
 import { ImmutableXClient } from '@imtbl/imx-sdk'
-import {Integer} from "io-ts";
-
 let link = new Link('https://link.sandbox.x.immutable.com');
 
 const immutableXapi = (()=>{
