@@ -5,8 +5,7 @@ let link = new Link('https://link.sandbox.x.immutable.com');
 const immutableXapi = (()=>{
     const login = ( async () => {
         try {
-            let result =  await link.setup({})
-            console.log(result)
+            return await link.setup({})
         } catch (error) {
             console.error(error)
         }

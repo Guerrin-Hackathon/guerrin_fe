@@ -22,7 +22,7 @@ const Home: NextPage = () => {
                 <h1 className="text-6xl font-bold mt-10">
                     Guerrín{' '}
                 <a className="text-red-600">Rewards</a></h1>
-                <button className="bg-red-500 hover:bg-red-700  mt-5 text-white font-bold py-2 px-4 rounded"  onClick={immutableXService.login}>Connect Wallet</button>
+                <button className="bg-red-500 hover:bg-red-700  mt-5 text-white font-bold py-2 px-4 rounded"  onClick={login}>Sign in</button>
             </main>
 
             <footer className="flex h-24 w-full items-center justify-center border-t">
@@ -30,6 +30,13 @@ const Home: NextPage = () => {
             </footer>
         </div>
     )
+
+     async function login() {
+       let result  =  await immutableXService.login();
+       if(result){
+           window.localStorage.setItem("address", result.address);
+       }
+    }
 }
 
 export default Home
