@@ -10,6 +10,8 @@ const api = (()=>{
     const createRewards = ( async (title:string , description:string|undefined , amount:number, image:File) => {
         try {
             //fetch to our api, creating a collection for the creator
+            console.log("Creating collection");
+            const formData = new FormData();
         } catch (error) {
             console.error(error)
         }
