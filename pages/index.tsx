@@ -3,6 +3,7 @@ import Head from 'next/head'
 import {useTheme} from "next-themes";
 import {ToggleTheme} from "../components/ToggleTheme";
 import immutableXService from "../service/ImmutableXService";
+import {toast, Toaster} from "react-hot-toast";
 
 
 const Home: NextPage = () => {
@@ -10,6 +11,7 @@ const Home: NextPage = () => {
     const {theme, setTheme} = useTheme()
 
     return (
+
         <div className="flex min-h-screen flex-col items-center justify-center py-2">
             <Head>
                 <title>Guerrín Rewards</title>
@@ -17,6 +19,10 @@ const Home: NextPage = () => {
             </Head>
 
             <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
+                <Toaster
+                    position="bottom-center"
+                    reverseOrder={false}
+                />
                 <ToggleTheme/>
 
                 <h1 className="text-6xl font-bold mt-10">
@@ -36,6 +42,10 @@ const Home: NextPage = () => {
        if(result){
            window.localStorage.setItem("address", result.address);
            window.localStorage.setItem("starkPublicKey", result.starkPublicKey);
+           toast.success('Successfully logged in!')
+           setTimeout(()=>{
+               document.location.href = '/creations';
+           }, 3000);
        }
     }
 }

@@ -15,4 +15,4 @@ const Creations:NextPage = () =>{
     );
 
 }
-export default Home
+export default Creations
