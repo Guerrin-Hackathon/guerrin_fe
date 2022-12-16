@@ -52,20 +52,5 @@ const Claim: NextPage = () => {
         let result = await apiService.claimReward(router.query.nftId, router.query.token, data.wallet);
     }
 
-    type FormDataDistribute = {
-            ids:string[],
-            mails:string[]
-    }
-    async function onSubmitDistribute(data:FormDataDistribute){
-
-        // transfer Immutable X tokens to our address
-        let imResult = await immutableXService.batchTransfer(data.ids);
-
-        //call api informing transaction
-        let apiResult = await apiService.distributeRewards(data.ids, data.mails);
-
-    }
-
-
 }
 export default Claim

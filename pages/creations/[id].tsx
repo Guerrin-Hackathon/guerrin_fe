@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import immutableXService from '../../service/ImmutableXService';
 import { Spinner } from '../../components/shared/Spinner';
 import { useState } from 'react';
+import apiService from '../../service/apiService';
 
 type FormValues = {
   email: string
@@ -28,11 +29,24 @@ export default function CreationId() {
 
   if (isError || !tokenIds) return <p>Something went wrong</p>
 
-  // TODO:
-  const onSubmit = (data: FormValues) => {}
+  async function onSubmit() {
+
+    // transfer Immutable X tokens to our address
+    let imResult = await immutableXService.batchTransfer(tokenIds!!);
+
+    //call api informing transaction
+    let apiResult = await apiService.distributeRewards(tokenIds!!, emails);
+
+    console.log("IMMUTABLE X RESULT", imResult)
+    console.log("API RESULT", apiResult)
+  }
 
   const addEmail = () => {
     const { email } = getValues()
+    if (emails.length >= tokenIds.length){
+      alert("You can't add more emails than rewards")
+      return
+    }
     setEmails(p => [...p, email])
     reset()
   }
@@ -44,15 +58,12 @@ export default function CreationId() {
       <ImageWithTextLayout nft_id={tokenIds[0]} />
 
       <p className="text-center">Available rewards: {tokenIds.length}</p>
-      <form className="w-screen flex justify-center gap-2" onSubmit={handleSubmit(onSubmit)}>
+      <div className="w-screen flex justify-center gap-2">
         <input
           className="rounded-lg mt-10 p-2 mr-4"
           type="email"
           placeholder="Insert email"
-          {...register("email", {
-            required: "Email is required",
-            validate: (value) => emails.length < tokenIds.length || "No more rewards available",
-          })}
+          {...register("email")}
           aria-invalid={errors.email ? "true" : "false"}
         />
         <button
@@ -62,12 +73,12 @@ export default function CreationId() {
           <span>Add</span>
         </button>
         <button
-          type="submit"
+          onClick={onSubmit}
           className="bg-red-500 hover:bg-red-600  font-bold py-2 px-4 rounded inline-flex items-center mt-10"
         >
           <span>Send Rewards</span>
         </button>
-      </form>
+      </div>
       {errors.email && (
         <p className="text-center mt-2 text-red-600">{errors.email.message}</p>
       )}
