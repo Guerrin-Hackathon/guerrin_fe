@@ -2,7 +2,6 @@ import React from 'react';
 import immutableXService, {asset} from "../service/ImmutableXService";
 import {useQuery} from "@tanstack/react-query";
 import {Spinner} from "./shared/Spinner";
-import Image from "next/image";
 
 interface ImageWithTextLayoutProps {
     nft_id: string | string[] | undefined;

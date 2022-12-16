@@ -56,7 +56,7 @@ const immutableXapi = (() => {
         }
     })
 
-    const getAsset = (async (address: string, nft_id: string) => {
+    const getAsset = (async (address: string, nft_id: string | string[] | undefined) => {
         try {
             const client = await ImmutableXClient.build({
                 publicApiUrl: `${process.env.IMMUTABLEX_API}`,

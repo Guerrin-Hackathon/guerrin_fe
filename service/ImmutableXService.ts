@@ -18,7 +18,7 @@ const immutableXService = (() => {
     }
 
     //Assets from our collection, we have the token address
-    const getAsset = async (token_id: string) => {
+    const getAsset = async (token_id: string | string[] | undefined) => {
         return immutableXapi.getAsset(`${process.env.ADDRESS}`, token_id);
     }
 
