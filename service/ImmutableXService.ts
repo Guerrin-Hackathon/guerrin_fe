@@ -12,13 +12,14 @@ const immutableXService = (()=>{
     }
 
     //Assets from our collection, we have the token address
-    const getAssetsFromTokenAddress = async () =>{
-
+    const getAssets = async (wallet) =>{
+       return immutableXapi.getAssets(wallet);
     }
 
     return {
         login,
-        batchTransfer
+        batchTransfer,
+        getAssets
     }
 })();
 export default immutableXService;

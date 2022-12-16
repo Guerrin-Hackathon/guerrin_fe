@@ -25,9 +25,19 @@ const immutableXapi = (()=>{
             console.error(error)
         }
     })
+
+    const getAssets =  ( async (wallet) => {
+        try {
+
+        } catch (error) {
+            console.error(error)
+        }
+    })
+
     return {
         login,
-        batchTransfer
+        batchTransfer,
+        getAssets
     }
 })();
 
