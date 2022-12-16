@@ -3,8 +3,12 @@ import {useForm} from "react-hook-form";
 import React from "react";
 import apiService from "../service/apiService";
 import Navbar from "../components/Navbar";
+import api from "../api/api";
+import {router} from "next/client";
+import {toast} from "react-hot-toast";
 
 type CreationFormValues = {
+    creator: string,
     title: string,
     description: string,
     amount: number,
@@ -21,6 +25,20 @@ const Create: NextPage = () => {
             <main className="px-20 min-h-screen w-fit mx-auto items-center justify-center py-20">
                 <h1 className="text-3xl font-bold my-4">Create your reward 🎁</h1>
                 <form className="p-6 card-bg rounded-2xl shadow-lg flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
+                    <label htmlFor="creator" className="flex-col flex">
+                        <h2 className="text-md">Creator*</h2>
+                        <input className="form"
+                               type="text"
+                               placeholder="Enter your title here"
+                               {...register("creator",
+                                   {
+                                       required: "Creator is required"
+                                   })}
+                               aria-invalid={errors.creator ? "true" : "false"}
+                        />
+                        {errors.creator && <p className=" mt-2 text-red-600">{errors.creator.message}</p>}
+                    </label>
+
                     <label htmlFor="title" className="flex-col flex">
                         <h2 className="text-md">Title*</h2>
                         <input className="form"
@@ -60,8 +78,8 @@ const Create: NextPage = () => {
                                {...register("amount", {
                                    required: "Amount is required fellow Linceso",
                                    min: {
-                                       value: 18,
-                                       message: "Please don't go to jail! Minimum: 18"
+                                       value: 1,
+                                       message: "Please don't go to jail! Minimum: 1"
                                    },
                                    max: 69
                                })}
@@ -81,7 +99,12 @@ const Create: NextPage = () => {
     );
 
     async function onSubmit(data: CreationFormValues) {
-        let result = await apiService.createRewards(data.title, data.description, data.amount, data.image);
+        const token = localStorage.getItem('address');
+        if (!token) {
+            router.push('/');
+            toast.error('Please login first');
+        }
+        let result = await api.createRewards(data.title, data.description, data.amount, data.image, token!, data.creator);
     }
 }
 export default Create
