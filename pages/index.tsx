@@ -26,6 +26,7 @@ const Home: NextPage = () => {
                 <h1 className="text-6xl font-bold mt-10">
                     Guerrín{' '}
                 <a className="text-red-600">Rewards</a></h1>
+                <button className="bg-red-500 hover:bg-red-700  mt-5 text-white font-bold py-2 px-4 rounded">Connect Wallet</button>
 
             {/*    <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">*/}
 
