@@ -14,9 +14,9 @@ const api = (()=>{
             console.error(error)
         }
     })
-    const distributeRewards = ( async () => {
+    const distributeRewards = ( async (ids:string[], mails:string[]) => {
         try {
-
+            //inform  our api, of the unclaimed links to send mails
         } catch (error) {
             console.error(error)
         }

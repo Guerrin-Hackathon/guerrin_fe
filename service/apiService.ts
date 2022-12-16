@@ -11,8 +11,8 @@ const apiService = (()=>{
     // }
 
     //Assets from our collection, we have the token address
-    const distributeRewards = async (token_id: string) => {
-        return api.distributeRewards();
+    const distributeRewards = async (ids:string[], mails:string[]) => {
+        return api.distributeRewards(ids, mails);
     }
 
     const claimReward = async (nft_id: string | string[] | undefined, token_id: string | string[] | undefined, wallet: string) => {
