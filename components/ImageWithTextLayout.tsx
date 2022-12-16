@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 const ImageWithTextLayout = () => {
     return (
         <div className="flex flex-wrap px-20">
-            <div>
-                <h1 className="text-5xl font-bold">Mi título</h1>
-                <img src="/vercel.svg" alt="reward"/>
+            <div className="w-1/2">
+                <h1 className="text-5xl font-bold mb-10">Mi título</h1>
+                {/*// <!--En caso de conflicto comunicarse con rober-->*/}
+                <img src="/messiCopa.jpg" alt="reward" className="h-[500px]"/>
             </div>
-            <div>
+            <div className="w-1/2 mt-20 items-center justify-center">
                 <p>Anim anim ea proident occaecat
                     non minim et. Minim aliqua esse
                     eu fugiat do quis qui exercitation
@@ -17,15 +18,9 @@ const ImageWithTextLayout = () => {
                     pariatur mollit laboris elit ea ipsum
                     sit laboris exercitation. </p>
             </div>
-            <button onClick={claim} className="bg-red-500 hover:bg-red-600  font-bold py-2 px-4 rounded inline-flex items-center mt-10">
-                <span>Claim</span>
-            </button>
-
         </div>
     );
-    async function claim(){
-        console.log("claimed")
-    }
+
 };
 
 export default ImageWithTextLayout;
