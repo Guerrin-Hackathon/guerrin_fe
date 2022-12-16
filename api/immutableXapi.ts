@@ -1,5 +1,6 @@
 import {Link} from "@imtbl/imx-sdk";
 import { ImmutableXClient } from '@imtbl/imx-sdk'
+import {Integer} from "io-ts";
 
 let link = new Link('https://link.sandbox.x.immutable.com');
 
@@ -34,17 +35,10 @@ const immutableXapi = (()=>{
             })
 
             let assets =  await client.getAssets({
-                user: "nuestra address",
+                user: "0x73D873D25BBE8BaFA27dD20c95A71AF125820a7C",
             });
-            let result = [ ];
-
-            for(const asset of assets){
-                if(asset.token_id ===  nft_id){
-                    result.push(asset);
-                }
-            }
-
-            return result;
+            console.log(assets.result[parseInt(nft_id)].metadata)
+            return assets.result[parseInt(nft_id)].metadata;
         } catch (error) {
             console.error(error)
         }
