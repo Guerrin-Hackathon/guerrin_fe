@@ -1,5 +1,9 @@
 import {Link} from "@imtbl/imx-sdk";
+<<<<<<< Updated upstream
 import {ImmutableXClient} from '@imtbl/imx-sdk'
+=======
+import { ImmutableXClient } from '@imtbl/imx-sdk'
+>>>>>>> Stashed changes
 
 let link = new Link('https://link.sandbox.x.immutable.com');
 

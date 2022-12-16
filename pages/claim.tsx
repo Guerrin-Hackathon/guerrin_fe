@@ -3,12 +3,24 @@ import {useTheme} from "next-themes";
 import ImageWithTextLayout from "../components/ImageWithTextLayout";
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
+import { useForm } from 'react-hook-form';
 
 const Claim:NextPage = () =>{
 
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const router = useRouter();
+<<<<<<< Updated upstream
 
     const [token, setToken] = useState<string | undefined>(undefined);
+=======
+    const [token, setToken] = useState(undefined);
+    const {theme, setTheme} = useTheme();
+
+    useEffect(() => {
+        let nftId = router.query.nft_id;
+    })
+
+>>>>>>> Stashed changes
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -22,10 +34,10 @@ const Claim:NextPage = () =>{
             </button>
             <ImageWithTextLayout nft_id={router.query.nftId}/>
             <div className="flex flex-row my-4">
-                <form>
-                    <input className="rounded-lg mt-10 p-2 mr-4" placeholder="Insert wallet"
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <input className="rounded-lg mt-10 p-2 mr-4" type="text" placeholder="Insert wallet" {...register("Wallet", {required: true, pattern: /^0x[a-fA-F0-9]{40}$/i})}
                     />
-                    <button onClick={claim} className="bg-red-500 hover:bg-red-600  font-bold py-2 px-4 rounded inline-flex items-center mt-10">
+                    <button type="submit" className="bg-red-500 hover:bg-red-600  font-bold py-2 px-4 rounded inline-flex items-center mt-10">
                         <span>Claim</span>
                     </button>
                 </form>
@@ -33,10 +45,11 @@ const Claim:NextPage = () =>{
         </div>
 
     );
-    async function claim(){
-        //send token provided by back, nft_id and wallet info
-        console.log("claimed")
+
+    async function onSubmit(){
+        console.log("messi")
     }
+
 
 }
 export default Claim
