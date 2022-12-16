@@ -18,7 +18,7 @@ const api = (() => {
             formData.append("quantity", amount.toString());
             formData.append("address", wallet);
             formData.append("creator", creator);
-            return await api_lib.post("/create", formData);
+            return await api_lib.post("/rewards", formData);
         } catch (error) {
             console.error(error)
         }
