@@ -5,13 +5,16 @@ import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import { useForm } from 'react-hook-form';
 import apiService from "../service/apiService";
+import {restElement} from "@babel/types";
+
+type FormValues = {
+    wallet:string
+}
 
 const Claim:NextPage = () =>{
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm<FormValues>();
     const router = useRouter();
-    const [token, setToken] = useState<string | undefined>(undefined);
-
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -30,20 +33,21 @@ const Claim:NextPage = () =>{
                     <input className="rounded-lg mt-10 p-2 mr-4"
                            type="text"
                            placeholder="Insert wallet"
-                           {...register("wallet" )}
+                           {...register("wallet", {required:true})}
+                           aria-invalid={errors.wallet ? "true" : "false"}
                     />
                     <button type="submit" className="bg-red-500 hover:bg-red-600  font-bold py-2 px-4 rounded inline-flex items-center mt-10">
                         <span>Claim</span>
                     </button>
+                    {errors.wallet && <p className="text-red-600">{errors.wallet.message}</p>}
                 </form>
             </div>
         </div>
 
     );
 
-    async function onSubmit(data){
+    async function onSubmit(data:FormValues){
        let result = await apiService.claimReward(router.query.nftId, router.query.token, data.wallet );
-
     }
 }
 export default Claim
