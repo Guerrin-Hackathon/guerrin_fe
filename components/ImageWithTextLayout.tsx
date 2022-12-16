@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import immutableXService from "../service/ImmutableXService";
 
-const ImageWithTextLayout = ({nft_id}) => {
+interface ImageWithTextLayoutProps {
+    nft_id: string;
+}
+
+const ImageWithTextLayout: React.FC<ImageWithTextLayoutProps> = (props) => {
 
     const [title, setTitle] = useState("No title fetched");
     const [desc, setDesc] = useState("Anim anim ea proident occaecat\n" +
@@ -17,7 +21,7 @@ const ImageWithTextLayout = ({nft_id}) => {
 
     useEffect(() => {
             async function fetchImmutableX() {
-                let asset = await immutableXService.getAsset(nft_id);
+                let asset = await immutableXService.getAsset(props.nft_id);
                 if (!asset)
                     return;
                 setTitle(asset.title);
@@ -26,7 +30,7 @@ const ImageWithTextLayout = ({nft_id}) => {
                 setCreator(asset.creator);
             }
              fetchImmutableX();
-        }, [nft_id]);
+        }, [props.nft_id]);
 
     return (
         <div className="flex flex-wrap px-20 w-full">

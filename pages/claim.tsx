@@ -8,14 +8,7 @@ const Claim:NextPage = () =>{
 
     const router = useRouter();
 
-    const [token, setToken] = useState(undefined);
-
-    const {theme, setTheme} = useTheme();
-
-    useEffect(()=>{
-        let nftId = router.query.nft_id;
-    })
-
+    const [token, setToken] = useState<string | undefined>(undefined);
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-center py-2">

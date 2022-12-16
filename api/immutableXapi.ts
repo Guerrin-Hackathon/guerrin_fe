@@ -1,9 +1,10 @@
 import {Link} from "@imtbl/imx-sdk";
-import { ImmutableXClient } from '@imtbl/imx-sdk'
+import {ImmutableXClient} from '@imtbl/imx-sdk'
+
 let link = new Link('https://link.sandbox.x.immutable.com');
 
-const immutableXapi = (()=>{
-    const login = ( async () => {
+const immutableXapi = (() => {
+    const login = (async () => {
         try {
             return await link.setup({})
         } catch (error) {
@@ -26,18 +27,18 @@ const immutableXapi = (()=>{
     //     }
     // })
 
-    const getAsset =  ( async (address:string, nft_id:string) => {
+    const getAsset = (async (address: string, nft_id: string) => {
         try {
             const client = await ImmutableXClient.build({
                 publicApiUrl: `${process.env.IMMUTABLEX_API}`,
             })
 
-            let assets =  await client.getAssets({
+            let assets = await client.getAssets({
                 user: address,
             });
-            if( assets.result){
-                for(const asset of assets.result){
-                    if(asset.token_id == nft_id){
+            if (assets.result) {
+                for (const asset of assets.result) {
+                    if (asset.token_id == nft_id) {
                         return asset.metadata;
                     }
                 }
