@@ -2,8 +2,8 @@ import api from "../api/api";
 
 const apiService = (()=>{
 
-    const createRewards = async () => {
-        return api.createRewards();
+    const createRewards = async (title:string , description:string|undefined , amount:number, image:File) => {
+        return api.createRewards(title, description, amount, image);
     }
 
     // const batchTransfer = async () =>{
