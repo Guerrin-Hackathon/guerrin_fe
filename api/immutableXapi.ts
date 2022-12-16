@@ -10,8 +10,24 @@ const immutableXapi = (()=>{
             console.error(error)
         }
     })
+
+    const batchTransfer = ( async (toAddress, tokenId, tokenAddress) => {
+        try {
+            return await link.batchNftTransfer([
+                {
+                    "type": "ERC721TokenType",
+                    "toAddress": `${toAddress}`,
+                    "tokenId": `${tokenId}`,
+                    "tokenAddress": `${tokenAddress}`
+                }
+            ])
+        } catch (error) {
+            console.error(error)
+        }
+    })
     return {
-        login
+        login,
+        batchTransfer
     }
 })();
 

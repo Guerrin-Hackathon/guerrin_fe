@@ -35,6 +35,7 @@ const Home: NextPage = () => {
        let result  =  await immutableXService.login();
        if(result){
            window.localStorage.setItem("address", result.address);
+           window.localStorage.setItem("starkPublicKey", result.starkPublicKey);
        }
     }
 }
