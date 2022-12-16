@@ -1,12 +1,9 @@
 import {NextPage} from "next";
 import ImageWithTextLayout from "../components/ImageWithTextLayout";
-import React, {useState} from "react";
+import React from "react";
 import {useRouter} from "next/router";
 import {useForm} from 'react-hook-form';
-import {restElement} from "@babel/types";
-import {Spinner} from "../components/shared/Spinner";
 import Navbar from "../components/Navbar";
-import immutableXService from "../service/ImmutableXService";
 import apiService from "../service/apiService";
 
 type FormValues = {
