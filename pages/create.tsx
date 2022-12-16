@@ -49,6 +49,7 @@ const Create:NextPage = () =>{
                            max: 69
                        })}
                        aria-invalid={errors.amount ? "true" : "false"}
+                       placeholder="Amount of rewards to be generated"
                 />
                 {errors.amount && <p className=" mt-2 text-red-600">{errors.amount.message}</p>}
                 <button type="submit" className="bg-red-500 hover:bg-red-600  font-bold py-2 px-4 rounded inline-flex items-center mt-10">
