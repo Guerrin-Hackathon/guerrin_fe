@@ -28,7 +28,7 @@ export const ToggleTheme: React.FC = () => {
         return null
     }
 
-    return (<button className="transition-all duration-300 ease-linear transform hover:scale-110 active:scale-95"
+    return (<button className="icon"
                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
         {theme === 'dark' ? <DarkModeIcon/> : <LightModeIcon/>}
     </button>);
