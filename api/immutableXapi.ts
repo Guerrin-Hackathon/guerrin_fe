@@ -36,6 +36,7 @@ const immutableXapi = (() => {
             let assets = await client.getAssets({
                 user: address,
             });
+
             if (assets.result) {
                 for (const asset of assets.result) {
                     if (asset.token_id == nft_id) {

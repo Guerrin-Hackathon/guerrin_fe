@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .card-bg {
+        @apply bg-white dark:bg-zinc-900 bg-opacity-80 backdrop-filter backdrop-blur-md;
+    }
+    .icon {
+        @apply transition-all duration-300 ease-linear transform hover:scale-110 active:scale-95
+    }
+}
+
 .spinner {
     width: 160px;
     height: 160px;

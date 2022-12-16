@@ -1,8 +1,13 @@
-
 import immutableXapi from "../api/immutableXapi";
 
+export type asset = {
+    title: string;
+    description: string;
+    image_url: string;
+    creator: string;
+}
 
-const immutableXService = (()=>{
+const immutableXService = (() => {
 
     const login = async () => {
         return immutableXapi.login();

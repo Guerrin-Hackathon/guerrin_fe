@@ -1,7 +1,6 @@
 import {NextPage} from "next";
-import {useTheme} from "next-themes";
 import ImageWithTextLayout from "../components/ImageWithTextLayout";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useRouter} from "next/router";
 
 const Claim:NextPage = () =>{
