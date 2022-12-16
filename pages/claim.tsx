@@ -33,13 +33,17 @@ const Claim:NextPage = () =>{
                     <input className="rounded-lg mt-10 p-2 mr-4"
                            type="text"
                            placeholder="Insert wallet"
-                           {...register("wallet", {required:true})}
+                           {...register("wallet", {required: "Wallet is required", pattern:  {
+                                   value:  /^0x[a-fA-F0-9]{40}$/g,
+                                   message: "Please input wallet format"
+                               } })}
                            aria-invalid={errors.wallet ? "true" : "false"}
                     />
                     <button type="submit" className="bg-red-500 hover:bg-red-600  font-bold py-2 px-4 rounded inline-flex items-center mt-10">
                         <span>Claim</span>
                     </button>
-                    {errors.wallet && <p className="text-red-600">{errors.wallet.message}</p>}
+
+                    {errors.wallet && <p className=" mt-2 text-red-600">{errors.wallet.message}</p>}
                 </form>
             </div>
         </div>
@@ -49,5 +53,7 @@ const Claim:NextPage = () =>{
     async function onSubmit(data:FormValues){
        let result = await apiService.claimReward(router.query.nftId, router.query.token, data.wallet );
     }
+
+
 }
 export default Claim

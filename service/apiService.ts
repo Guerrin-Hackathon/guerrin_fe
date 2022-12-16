@@ -19,8 +19,6 @@ const apiService = (()=>{
         return api.claimReward(nft_id, token_id, wallet);
     }
 
-
-
     return {
         createRewards,
         distributeRewards,
