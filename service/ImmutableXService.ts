@@ -13,9 +13,9 @@ const immutableXService = (() => {
         return immutableXapi.login();
     }
 
-    // const batchTransfer = async () =>{
-    //     return immutableXapi.batchTransfer("a", "b", "c");
-    // }
+    const batchTransfer = async (ids:string[]) =>{
+        return immutableXapi.batchTransfer(ids);
+    }
 
     //Assets from our collection, we have the token address
     const getAsset = async (token_id: string) => {
@@ -24,7 +24,7 @@ const immutableXService = (() => {
 
     return {
         login,
-        //batchTransfer,
+        batchTransfer,
         getAsset
     }
 })();

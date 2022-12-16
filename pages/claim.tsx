@@ -5,6 +5,7 @@ import {useRouter} from "next/router";
 import { useForm } from 'react-hook-form';
 import apiService from "../service/apiService";
 import {restElement} from "@babel/types";
+import immutableXService from "../service/ImmutableXService";
 
 type FormValues = {
     wallet:string
@@ -51,6 +52,20 @@ const Claim:NextPage = () =>{
 
     async function onSubmit(data:FormValues){
        let result = await apiService.claimReward(router.query.nftId, router.query.token, data.wallet );
+    }
+
+    type FormDataDistribute = {
+            ids:string[],
+            mails:string[]
+    }
+    async function onSubmitDistribute(data:FormDataDistribute){
+
+        // transfer Immutable X tokens to our address
+        let imResult = await immutableXService.batchTransfer(data.ids);
+
+        //call api informing transaction
+        let apiResult = await apiService.distributeRewards(data.ids, data.mails);
+
     }
 
 

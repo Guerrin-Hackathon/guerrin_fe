@@ -1,4 +1,4 @@
-import {Link} from "@imtbl/imx-sdk";
+import {ERC721TokenType, Link} from "@imtbl/imx-sdk";
 import {ImmutableXClient} from '@imtbl/imx-sdk'
 
 
@@ -13,20 +13,23 @@ const immutableXapi = (() => {
         }
     })
 
-    // const batchTransfer = ( async (toAddress, tokenId, tokenAddress) => {
-    //     try {
-    //         return await link.batchNftTransfer([
-    //             {
-    //                 "type": "ERC721TokenType",
-    //                 "toAddress": `${toAddress}`,
-    //                 "tokenId": `${tokenId}`,
-    //                 "tokenAddress": `${tokenAddress}`
-    //             }
-    //         ])
-    //     } catch (error) {
-    //         console.error(error)
-    //     }
-    // })
+    const batchTransfer = ( async (ids:string[]) => {
+        try {
+            let payload = [];
+
+            for(const id of ids){
+                payload.push({
+                    "type": ERC721TokenType.ERC721,
+                    "toAddress": `${process.env.ADDRESS}`,
+                    "tokenId": `${id}`,
+                    "tokenAddress": `${process.env.CONTRACT_ADDRESS}`
+                });
+            }
+            return await link.batchNftTransfer(payload);
+        } catch (error) {
+            console.error(error)
+        }
+    })
 
     const getAsset = (async (address: string, nft_id: string) => {
         try {
@@ -53,7 +56,7 @@ const immutableXapi = (() => {
 
     return {
         login,
-        //batchTransfer,
+        batchTransfer,
         getAsset
     }
 })();
