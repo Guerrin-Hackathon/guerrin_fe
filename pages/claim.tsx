@@ -1,12 +1,9 @@
 import {NextPage} from "next";
 import ImageWithTextLayout from "../components/ImageWithTextLayout";
-import React, {useState} from "react";
+import React from "react";
 import {useRouter} from "next/router";
 import {useForm} from 'react-hook-form';
-import {restElement} from "@babel/types";
-import {Spinner} from "../components/shared/Spinner";
 import Navbar from "../components/Navbar";
-import immutableXService from "../service/ImmutableXService";
 import apiService from "../service/apiService";
 
 type FormValues = {
@@ -18,14 +15,14 @@ const Claim: NextPage = () => {
     const router = useRouter();
 
     return (
-        <div className="flex min-h-screen container flex-col items-center justify-center py-2">
+        <div className="flex min-h-screen flex-col items-center justify-center py-2">
 
             <Navbar/>
 
             <ImageWithTextLayout nft_id={router.query.nftId}/>
 
             <div className="flex flex-row my-4">
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form className="space-x-4" onSubmit={handleSubmit(onSubmit)}>
                     <input className="form"
                            type="text"
                            placeholder="Insert wallet"
