@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api_lib = axios.create({
     baseURL: process.env.API_URL,
-    timeout: 5000,
+    timeout: 5000
 });
 
 const api = (()=>{
@@ -11,7 +11,19 @@ const api = (()=>{
         try {
             //fetch to our api, creating a collection for the creator
             console.log("Creating collection");
+
             const formData = new FormData();
+            formData.append('title', title);
+            if(description){
+                formData.append('description', description);
+            }
+            formData.append('amount', amount.toString());
+            formData.append('imate', image);
+
+            console.log(process.env.API_URL)
+            let result = await api_lib.post('/rewards', formData);
+            console.log(result);
+
         } catch (error) {
             console.error(error)
         }
