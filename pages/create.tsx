@@ -106,6 +106,13 @@ const Create: NextPage = () => {
             toast.error('Please login first');
         }
         let result = await api.createRewards(data.title, data.description, data.amount, data.image, token!, data.creator);
+        if(result){
+            console.log(result)
+            toast.success("Prize created!");
+            await router.push('/')
+        }else{
+            toast.error("Something went wrong");
+        }
     }
 }
 export default Create

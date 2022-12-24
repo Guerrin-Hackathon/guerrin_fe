@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api_lib = axios.create({
     baseURL: process.env.API_URL,
-    timeout: 5000
+    timeout: 15000
 });
 
 const api = (() => {
