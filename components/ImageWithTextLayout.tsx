@@ -24,7 +24,6 @@ const ImageWithTextLayout: React.FC<ImageWithTextLayoutProps> = (props) => {
                     <>
                         <div className="flex flex-col">
                             <h1 className="text-2xl font-bold font-mono leading-6 py-4">{assetQuery.data.title}</h1>
-                            {/*// <!--En caso de conflicto comunicarse con rober-->*/}
                             <img src={assetQuery.data.image_url} alt="reward"
                                  className="w-60 rounded-3xl shadow-lg shadow-red-600/40 dark:shadow-red-400/30"/>
                         </div>

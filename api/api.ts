@@ -27,6 +27,7 @@ const api = (() => {
     const distributeRewards = (async (ids: string[], mails: string[]) => {
         try {
             //inform  our api, of the unclaimed links to send mails
+            return await api_lib.post('/distribute', {ids:ids, mails:mails});
         } catch (error) {
             console.error(error)
         }
@@ -34,6 +35,7 @@ const api = (() => {
     const claimReward = (async (nft_id: string | string[] | undefined, token: string, wallet: string) => {
         try {
             //fetch to our api, indicating which nft to send to who, with it's auth token
+            return await api_lib.post('/claim', {id:nft_id, token:token, wallet:wallet});
         } catch (error) {
             console.error(error)
         }

@@ -4,8 +4,8 @@ import React from "react";
 import apiService from "../service/apiService";
 import Navbar from "../components/Navbar";
 import api from "../api/api";
-import {router} from "next/client";
 import {toast} from "react-hot-toast";
+import {useRouter} from "next/router";
 
 type CreationFormValues = {
     creator: string,
@@ -16,6 +16,7 @@ type CreationFormValues = {
 }
 
 const Create: NextPage = () => {
+    const router = useRouter();
     const {register, handleSubmit, formState: {errors}} = useForm<CreationFormValues>();
 
     return (
@@ -101,7 +102,7 @@ const Create: NextPage = () => {
     async function onSubmit(data: CreationFormValues) {
         const token = localStorage.getItem('address');
         if (!token) {
-            router.push('/');
+            await router.push('/');
             toast.error('Please login first');
         }
         let result = await api.createRewards(data.title, data.description, data.amount, data.image, token!, data.creator);
